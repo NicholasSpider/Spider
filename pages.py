@@ -1,20 +1,28 @@
 from random import choice
+from config import func_main
 
 
 def func_pages(site):
     if not site:
-        func_file()
-    print(site)
+        func_file(site)
+    func_history(site)
 
-def func_file():
+def func_file(site):
     try:
-        if not site:
-            with open('sites.txt', 'r') as f:
-        if site:
-            with open('sites.txt', 'r') as f:
-                sites = f.readlines()
-        print(sites)
+        with open('sites.txt', 'r') as f:
+            site = f.readlines()
+            func_history(site)
+            #print(site)
     except:
-        print('File unavailable. The program will automatically select the necessary previous page.')
-        input('Press key Enter...')
+        input('File sites.txt is unavailable. Press key Enter...')
         print(site)
+
+def func_history(site):
+    try:
+        with open('history_site.txt', 'r') as f:
+            history = f.readlines()
+    except:
+        input('File history_site.txt is unavailable. Press key Enter')
+    finally:
+        func_main(site, history)
+
